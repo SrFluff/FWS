@@ -14,6 +14,10 @@ if os.path.exists(argv[0]):
         doc.append(line)
     f.close()
 
+if os.path.exists("log.eff"):
+    os.remove("log.eff")
+f = open("log.eff", "w")
+
 i = 0
 stack = []
 while i < len(doc):
@@ -22,10 +26,13 @@ while i < len(doc):
     else:
         if doc[i].split()[0] == "psh":
             if doc[i].split()[1] == "$":
+                f.write("a2\n")
                 stack.append(doc[i][6:-1])
             elif doc[i].split()[1] == "&":
+                f.write("a3\n")
                 stack.append(random.randint(int(doc[i].split()[2]), int(doc[i].split()[3])))
             elif doc[i].split()[1] == "*":
+                f.write("a4\n")
                 num_one = stack[int(doc[i].split()[2])]
                 num_two = stack[int(doc[i].split()[4])]
                 if doc[i].split()[3] == "+":
@@ -41,11 +48,14 @@ while i < len(doc):
                 elif doc[i].split()[3] == "^":
                     stack.append(num_one ** num_two)
             elif doc[i].split()[1] == "!":
+                f.write("a1\n")
                 stack.append(int(doc[i].split()[2]))
         elif doc[i].split()[0] == "get":
+            f.write("b0\n")
             print(stack[int(doc[i].split()[1])])
         elif doc[i].split()[0] == "jmp":
             if doc[i].split()[2] == "==":
+                f.write("c1\n")
                 num_one = stack[int(doc[i].split()[1])]
                 num_two = stack[int(doc[i].split()[3])]
                 if num_one == num_two:
@@ -54,6 +64,7 @@ while i < len(doc):
                     elif doc[i].split()[2] == "ext":
                         exit()
             elif doc[i].split()[2] == "!=":
+                f.write("c2\n")
                 num_one = stack[int(doc[i].split()[1])]
                 num_two = stack[int(doc[i].split()[3])]
                 if num_one != num_two:
@@ -62,6 +73,7 @@ while i < len(doc):
                     elif doc[i].split()[2] == "ext":
                         exit()
             elif doc[i].split()[2] == "<":
+                f.write("c3\n")
                 num_one = stack[int(doc[i].split()[1])]
                 num_two = stack[int(doc[i].split()[3])]
                 if num_one < num_two:
@@ -70,13 +82,17 @@ while i < len(doc):
                     elif doc[i].split()[2] == "ext":
                         exit()
         elif doc[i].split()[0] == "ext":
+            f.write("d0\n")
             exit()
         elif doc[i].split()[0] == "pop":
+            f.write("e0\n")
             stack.pop(int(doc[i].split()[1]))
         elif doc[i].split()[0] == "swp":
+            f.write("f0\n")
             num_one = stack[int(doc[i].split()[1])]
             num_two = stack[int(doc[i].split()[2])]
             temp = num_one
             stack[int(doc[i].split()[1])] = num_two
             stack[int(doc[i].split()[2])] = temp
     i += 1
+f.close()
