@@ -30,4 +30,4 @@ jmp
 # Releases
 You can run the raw python file followed up by a file with the .fws extension, or you can download the precompiled executable (No MacOS anytime soon). Thanks to the Pyinstaller team for making this possible.
 
-*1.0.0*
+*1.1.0*
