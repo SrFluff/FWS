@@ -1,3 +1,5 @@
+![icon](https://github.com/user-attachments/assets/54d22a47-19af-470c-bb17-35fc7d88e3a9)
+
 # The FWS Programming Language
 ## Instructions
 ```
