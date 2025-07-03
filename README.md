@@ -6,6 +6,7 @@ swp
 get
 pop
 jmp
+ext
 ```
 ## PSH
 |symbol|push type|
