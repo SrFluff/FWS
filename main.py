@@ -1,4 +1,5 @@
 import os
+import sys
 from sys import argv
 import random
 
@@ -6,13 +7,18 @@ argv.pop(0)
 
 if len(argv) == 0:
     print("No file given")
-    exit()
-if os.path.exists(argv[0]):
-    f = open(argv[0], "r")
-    doc = []
-    for line in f:
-        doc.append(line)
-    f.close()
+    sys.exit()
+
+if not argv[0] == "-v":
+    if os.path.exists(argv[0]):
+        f = open(argv[0], "r")
+        doc = []
+        for line in f:
+            doc.append(line)
+        f.close()
+else:
+    print("1.2.0")
+    sys.exit()
 
 if os.path.exists("log.eff"):
     os.remove("log.eff")
@@ -62,7 +68,7 @@ while i < len(doc):
                     if doc[i].split()[4] == "jmp":
                         i = int(doc[i].split()[5]) - 1
                     elif doc[i].split()[2] == "ext":
-                        exit()
+                        sys.exit()
             elif doc[i].split()[2] == "!=":
                 f.write("c2\n")
                 num_one = stack[int(doc[i].split()[1])]
@@ -71,7 +77,7 @@ while i < len(doc):
                     if doc[i].split()[4] == "jmp":
                         i = int(doc[i].split()[5]) - 1
                     elif doc[i].split()[2] == "ext":
-                        exit()
+                        sys.exit()
             elif doc[i].split()[2] == "<":
                 f.write("c3\n")
                 num_one = stack[int(doc[i].split()[1])]
@@ -80,10 +86,10 @@ while i < len(doc):
                     if doc[i].split()[4] == "jmp":
                         i = int(doc[i].split()[5]) - 1
                     elif doc[i].split()[2] == "ext":
-                        exit()
+                        sys.exit()
         elif doc[i].split()[0] == "ext":
             f.write("d0\n")
-            exit()
+            sys.exit()
         elif doc[i].split()[0] == "pop":
             f.write("e0\n")
             stack.pop(int(doc[i].split()[1]))
