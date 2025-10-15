@@ -3,12 +3,13 @@
 # The FWS Programming Language
 ## Instructions
 ```
-psh
-swp
-get
-pop
-jmp
-ext
+psh - Pushes an item onto the stack
+swp - Swaps two stack items
+get - Prints a specified stack item
+pop - Removes a specified stack item
+jmp - Jumps to a certain line if criteria is met
+ask - Takes user input, and pushes it to the top of the stack
+ext - Exits
 ```
 ## PSH
 |symbol|push type|
@@ -17,6 +18,7 @@ ext
 |&|Random number (psh min max) |
 |*|Mathematical operation (+, -, *, /, % , ^) |
 |!|Integer |
+
 ## JMP
 |symbol|operation|
 |-|-|
@@ -30,6 +32,13 @@ ext
 |ext|jmp 0 == 1 ext|
 
 *(JMP CAN ONLY COMPARE STACK ITEMS)*
+
+## ASK
+
+|symbol|ask type|
+|------|--------|
+|$     |String  |
+|!     |Integer |
 
 # Others
 You can use `-v` to get the interpreter version

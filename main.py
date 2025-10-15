@@ -17,7 +17,7 @@ if not argv[0] == "-v":
             doc.append(line)
         f.close()
 else:
-    print("1.2.0")
+    print("1.3.0")
     sys.exit()
 
 if os.path.exists("log.eff"):
@@ -100,5 +100,14 @@ while i < len(doc):
             temp = num_one
             stack[int(doc[i].split()[1])] = num_two
             stack[int(doc[i].split()[2])] = temp
+        elif doc[i].split()[0] == "ask":
+            if doc[i].split()[1] == "!":
+                f.write("g0")
+                ask_input = int(input("> "))
+                stack.append(ask_input)
+            elif doc[i].split()[1] == "$":
+                f.write("g1")
+                ask_input = input("> ")
+                stack.append(ask_input)
     i += 1
 f.close()
